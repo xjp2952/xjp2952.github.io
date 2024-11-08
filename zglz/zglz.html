@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>治国理政</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('background.jpg'); /* replace with your background image */
+            background-size: 256px 389px;
+            background-position: top left;
+            background-repeat: no-repeat;
+        }
+        
+        @font-face {
+            font-family: 'a';
+            src: url('./ttf.ttf') format('truetype');
+        }
+        
+        .input-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: red;
+            border: none;
+            width: 200px;
+            font-family: 'a', sans-serif;
+            background-color: transparent;
+            border-bottom: 1px solid red;
+            position: fixed;
+        }
+        
+        .input-text:focus {
+            outline: none;
+        }
+        
+        .text {
+            font-size: 26px;
+            font-weight: bold;
+            color: red;
+            padding: 10px;
+            font-family: 'a', sans-serif;
+            cursor: pointer;
+            background-color: transparent;
+            position: fixed;
+        }
+        
+        #input3 {
+          font-size: 18px;
+        }
+        #text3 {
+          font-size: 18px 
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="input1" class="input-text" value="习近平" style="left: 64px; top: 200x;">
+    <input type="text" id="input2" class="input-text" value="谈治国理政" style="left: 64px; top: 250px;">
+    
+    <input type="text" id="input3" class="input-text" value=" " style="left: 64px; top: 320px;">
+
+    <script>
+        let input1 = document.getElementById('input1');
+        let input2 = document.getElementById('input2');
+        let input3 = document.getElementById('input3');
+        input1.style.top = "200px";
+        input2.style.top = "250px";
+        input3.style.top = "320px";
+        let text1 = null;
+        let text2 = null;
+        let text3 = null;
+        
+        input1.addEventListener('blur', function() {
+            if (input1.value !== '') {
+                text1 = document.createElement('span');
+                text1.className = 'text';
+                text1.textContent = input1.value;
+                text1.style.top = '200px';
+                text1.style.position = 'fixed';
+                document.body.appendChild(text1);
+                
+                // Calculate the width of the span
+                let width = text1.offsetWidth;
+                
+                // Calculate the left position of the span
+                let left = 128 - width / 2;
+                text1.style.left = left + 'px';
+                
+                input1.style.display = 'none';
+            }
+        });
+
+        input2.addEventListener('blur', function() {
+            if (input2.value !== '') {
+                text2 = document.createElement('span');
+                text2.className = 'text';
+                text2.textContent = input2.value;
+                text2.style.top = '250px';
+                text2.style.position = 'fixed';
+                document.body.appendChild(text2);
+                
+                // Calculate the width of the span
+                let width = text2.offsetWidth;
+                
+                // Calculate the left position of the span
+                let left = 128 - width / 2;
+                text2.style.left = left + 'px';
+                
+                input2.style.display = 'none';
+            }
+        });
+        
+        input3.addEventListener('blur', function() {
+            if (input3.value !== '') {
+                text3 = document.createElement('span');
+                text3.className = 'text';
+                text3.id = 'text3';
+                text3.textContent = input3.value;
+                text3.style.top = '320px';
+                text3.style.position = 'fixed';
+                document.body.appendChild(text3);
+                
+                // Calculate the width of the span
+                let width = text3.offsetWidth;
+                
+                // Calculate the left position of the span
+                let left = 128 - width / 2;
+                text3.style.left = left + 'px';
+                
+                input3.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('text')) {
+                let input = null;
+                if (event.target.style.top === '200px') {
+                    input = input1;
+                } else if (event.target.style.top === '250px') {
+                    input = input2;
+                } else if (event.target.style.top === '320px') {
+                    input = input3;
+                }
+                input.style.display = 'block';
+                input.focus();
+                event.target.remove();
+            }
+        });
+        
+    </script>
+</body>
+</html>
+
